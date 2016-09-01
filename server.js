@@ -46,13 +46,13 @@ app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
     AshleyVernonEndpoints: true, // CHANGE ME ;)
-    message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/ashleyvernon/express-personal-api/blob/master/README.md", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    message: "Welcome to my Ashley's api! Here's what you need to know!",
+    documentationUrl: "https://github.com/ashleyvernon/express-personal-api/blob/master/README.md", 
+    baseUrl: "https://cryptic-depths-62490.herokuapp.com/", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Get to Know Me Better!"}, // CHANGE ME
+      {method: "POST", path: "/api/Adventures", description: "My Adventures."} // CHANGE ME
     ]
   })
 });
