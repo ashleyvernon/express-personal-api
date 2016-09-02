@@ -11,14 +11,34 @@ var ashleyVernon = {
   currentCity: "San Francisco"
 };
 
-// var myAdventures = {
-// 	location: ,
-// 	date: String,
-// 	typeOfAdventure: String,
-// 	lengthOfAdventure: String
-// }
+var myAdventures = [{
+	location: "Rockbound Lake, Desolation Wildnerness",
+	date: "June 8th, 2016",
+	typeOfAdventure: "Backpacking",
+	lengthOfAdventure: "2 days, 14.5 miles"
+},
+{
+	location: "Rockbound Lake, Desolation Wildnerness",
+	date: "June 8th, 2016",
+	typeOfAdventure: "Backpacking",
+	lengthOfAdventure: "2 days, 14.5 miles"
+}]
 
 
+
+
+db.Adventure.remove({}, function(err, adventures){
+  if(err) {
+    console.log('Error occurred in remove', err);
+  } else {
+    console.log('removed all adventures');
+	}
+    db.Adventure.create(myAdventures, function(err, adventures){
+      if (err) { return console.log('err', err); }
+      console.log("created", adventures.length, "adventures");
+      process.exit();
+    });	
+});
 
 db.Profile.remove({}, function(err, profile){
   if(err) {
