@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models')
 
 /**********
  * ROUTES *
@@ -46,16 +46,18 @@ app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
     AshleyVernonEndpoints: true, // CHANGE ME ;)
-    message: "Welcome to my Ashley's api! Here's what you need to know!",
+    message: "Welcome to Ashley's api! Here's what you need to know!",
     documentationUrl: "https://github.com/ashleyvernon/express-personal-api/blob/master/README.md", 
     baseUrl: "https://cryptic-depths-62490.herokuapp.com/", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Get to Know Me Better!"}, // CHANGE ME
+      //put in information for about me: ie. pets: Sadie
       {method: "POST", path: "/api/Adventures", description: "My Adventures."} // CHANGE ME
     ]
-  })
+  });
 });
+// get all books
 
 /**********
  * SERVER *
