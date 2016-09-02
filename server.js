@@ -57,7 +57,19 @@ app.get('/api', function api_index(req, res) {
     ]
   });
 });
-// get all books
+
+
+// get profile
+app.get('/api/profile', function (req, res) {
+  // send all books as JSON response
+  db.Profile.findOne(function(err, profile){
+    if (err) { return console.log("index error: " + err); }
+    res.json(profile);  
+  });
+});
+
+// get adventures
+
 
 /**********
  * SERVER *
