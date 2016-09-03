@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var AdventureSchema = new Schema({
   location: String,
+  image: String,
   date: String,
   typeOfAdventure: String,
   lengthOfAdventure: String

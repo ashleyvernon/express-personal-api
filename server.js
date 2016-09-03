@@ -1,6 +1,14 @@
 // require express and other modules
 var express = require('express'),
+    // exphbs = require('express-handlebars'),
+
     app = express();
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('view engine', 'handlebars');
+
+// app.get('/', function (req, res) {
+//   res.render('index');
+// });
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -68,14 +76,52 @@ app.get('/api/profile', function (req, res) {
   });
 });
 
-// get adventures
-app.get('/api/adventures', function (req, res) {
+// update profile
+app.put('/api/profile', function (req, res) {
   // send all books as JSON response
-  db.Adventure.find(function(err, adventures){
+  db.Profile.findOne(function(err, profile){
     if (err) { return console.log("index error: " + err); }
-    res.json(adventures);  
+    console.log('Profile',profile);
+    profile.color = req.color;
+    profile.save(function(err, didProfileUpdate){
+      res.json(profile);  
+    });
   });
 });
+
+// get adventures
+app.get('/api/adventure', function (req, res) {
+  // send all books as JSON response
+  db.Adventure.find(function(err, adventure){
+    if (err) { return console.log("index error: " + err); }
+    res.json(adventure);  
+  });
+});
+
+// create a new adventures
+app.post('/api/adventure', function(req,res){
+  // create new book with form data (`req.body`)
+  // console.log('adventures update', req.body);
+  // var newAdventure = req.body;
+  // adventures.push(newAdventure);
+  // res.json(newAdventure);
+  var newAdventure = new db.Adventure(req.body);
+  // newAdventure.save(function(err, savedAdventure){
+  //   if(err){
+  //     return res.status(500).send('FAILURE');
+  //   }
+
+  //   res.send(savedAdventure);
+
+  // });
+
+});
+
+//deletes an adventure
+app.delete('/api/adventures', function(req,res){
+
+})
+
 
 /**********
  * SERVER *

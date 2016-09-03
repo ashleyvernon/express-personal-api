@@ -26,5 +26,40 @@
         </div>
       </div>
     </div>
-  </body>
+      <div id='profileTarget'>
+        <div>
+          <h2>My Adventures</h2>
+            <form class="form-inline" id="newDestinationForm">
+              <input type="text" class="form-control" name="adventure" placeholder="Add new adventure..." required />
+              <button type="submit">Add Adventure</button>
+            </form>
+        </div>
+        <div id="adventureTarget">
+            <script id="adventure-template" type="text/x-handlebars-template">
+              <div class="adventureList">  
+                {{#each adventures}}
+                <div class="newAdventure">
+                  {{@index}}: {{this.location}}
+                  {{@index}}: {{this.image}}
+                  {{@index}}: {{this.date}}
+                  {{@index}}: {{this.typeOfAdventure}}
+                  {{@index}}: {{this.lengthOfAdventure}}
+                </div>
+                {{/each}}
+              </div>
+            </script>
+        </div>
+      </div>
+          <!-- handlebars template -->
+          <script id="profile-template" type="text/x-handlebars-template">
+            <div class="profileItem">
+              <h2>{{name}}</h2>
+              <img src="{{githubProfileImage}}" alt="Ashley Vernon" height="200" width="200">
+              <a href="{{githubLink}}">My Github</a>
+              <a href="{{personalSiteLink}}">My Portfolio</a>
+              <p>City: {{currentCity}}</p>
+              <p>Pets: {{pets}}</p>
+            </div>
+          </script>
+  </body>    
 </html>
