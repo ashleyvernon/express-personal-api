@@ -77,17 +77,17 @@ app.get('/api/profile', function (req, res) {
 });
 
 // update profile
-app.put('/api/profile', function (req, res) {
-  // send all books as JSON response
-  db.Profile.findOne(function(err, profile){
-    if (err) { return console.log("index error: " + err); }
-    console.log('Profile',profile);
-    profile.color = req.color;
-    profile.save(function(err, didProfileUpdate){
-      res.json(profile);  
-    });
-  });
-});
+// app.put('/api/profile', function (req, res) {
+//   // send all books as JSON response
+//   db.Profile.findOne(function(err, profile){
+//     if (err) { return console.log("index error: " + err); }
+//     console.log('Profile',profile);
+//     profile.color = req.color;
+//     profile.save(function(err, didProfileUpdate){
+//       res.json(profile);  
+//     });
+//   });
+// });
 
 // get adventures
 app.get('/api/adventure', function (req, res) {
@@ -101,19 +101,27 @@ app.get('/api/adventure', function (req, res) {
 // create a new adventures
 app.post('/api/adventure', function(req,res){
   // create new book with form data (`req.body`)
+
   // console.log('adventures update', req.body);
   // var newAdventure = req.body;
-  // adventures.push(newAdventure);
-  // res.json(newAdventure);
-  var newAdventure = new db.Adventure(req.body);
-  // newAdventure.save(function(err, savedAdventure){
-  //   if(err){
-  //     return res.status(500).send('FAILURE');
-  //   }
+  var newAdventure = new db.Adventure({ 
+    location: req.body.location,
+    date: req.body.date,
+    typeOfAdventure: req.body.typeOfAdventure,
+    lengthOfAdventure: req.body.lengthOfAdventure
+    });
+  adventures.push(newAdventure);
+  res.json(newAdventure);
 
-  //   res.send(savedAdventure);
+  console.log(newAdventure);
+  newAdventure.save(function(err, savedAdventure){
+    if(err){
+      return res.status(500).send('FAILURE');
+    }
 
-  // });
+    res.send(savedAdventure);
+
+  });
 
 });
 
