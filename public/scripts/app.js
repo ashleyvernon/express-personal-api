@@ -33,7 +33,7 @@ $(document).ready(function(){
 
   $('#newAdventureForm').on('submit', function(e) {
     e.preventDefault();
-    // alert('this is not working');
+    alert('this is not working');
    // var location = $(this).find('input').val();
 
    // createAdventure(location)

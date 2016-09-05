@@ -125,8 +125,9 @@ app.post('/api/adventure', function(req,res){
     if (err) {
       return console.log(err);
       // return res.status(500).send('FAILURE');
-      console.log("what am i doing wrong");
+      // console.log("what am i doing wrong");
     }
+    console.log("I saved a new adventure");
     res.json(savedAdventure);
   });
 });
