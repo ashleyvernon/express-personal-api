@@ -3,6 +3,7 @@ var express = require('express'),
     // exphbs = require('express-handlebars'),
 
     app = express();
+require('./seed.js');
 // app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 // app.set('view engine', 'handlebars');
 
