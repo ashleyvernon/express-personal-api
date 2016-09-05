@@ -61,7 +61,7 @@ app.get('/api', function api_index(req, res) {
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Get to Know Me Better!"}, // CHANGE ME
       //put in information for about me: ie. pets: Sadie
-      {method: "POST", path: "/api/Adventures", description: "My Adventures."} // CHANGE ME
+      {method: "POST", path: "/api/adventure", description: "My Adventures."} // CHANGE ME
     ]
   });
 });
@@ -120,8 +120,7 @@ app.post('/api/adventure', function(req,res){
     });
   // adventure.push(newAdventure);
   res.json(newAdventure);
-
-  console.log(newAdventure);
+  // console.log(newAdventure);
   newAdventure.save(function(err, savedAdventure){
     if (err) {
       return console.log(err);
@@ -133,8 +132,8 @@ app.post('/api/adventure', function(req,res){
 });
 
 // deletes an adventure
-app.delete('/api/adventure', function(req,res){
-  console.log('adventures delete', req.params);
+// app.delete('/api/adventure', function(req,res){
+//   console.log('adventures delete', req.params);
 //   var adventureId = req.params.id;
 
 //   var deleteAdventureIndex = adventure.findIndex(function(e, index) {
@@ -144,7 +143,7 @@ app.delete('/api/adventure', function(req,res){
 //   var adventureToDelete = adventure[deleteAdventureIndex];
 //   adventure.splice(deleteAdventureIndex, 1);
 //   res.json(adventureToDelete);
-});
+// });
 
 
 /**********
