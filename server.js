@@ -97,7 +97,15 @@ app.get('/api/adventure', function (req, res) {
     res.json(adventure);  
   });
 });
-
+//***************
+// app.post('/api/careers', function (req, res) {
+//   var newCareer = new db.Career(req.body);
+//   newCareer.save(function (err, savedCareer) {
+//     if (err) {return console.log(err);}
+//     res.json(savedCareer);
+//   });
+// });
+//**************
 // create a new adventures
 app.post('/api/adventure', function(req,res){
   // create new book with form data (`req.body`)
@@ -105,25 +113,23 @@ app.post('/api/adventure', function(req,res){
   // console.log('adventures update', req.body);
   // var newAdventure = req.body;
   var newAdventure = new db.Adventure({ 
-    location: req.body.location,
+    location: req.body.locationAdventure,
     date: req.body.date,
     typeOfAdventure: req.body.typeOfAdventure,
     lengthOfAdventure: req.body.lengthOfAdventure,
     });
-  adventures.push(newAdventure);
+  // adventure.push(newAdventure);
   res.json(newAdventure);
 
   console.log(newAdventure);
   newAdventure.save(function(err, savedAdventure){
     if (err) {
-      return res.status(500).send('FAILURE');
+      return console.log(err);
+      // return res.status(500).send('FAILURE');
       console.log("what am i doing wrong");
     }
-
-    res.send(savedAdventure);
-
+    res.json(savedAdventure);
   });
-
 });
 
 //deletes an adventure

@@ -35,17 +35,14 @@ $(document).ready(function(){
     e.preventDefault();
     // alert('this is not working');
    // var location = $(this).find('input').val();
-    var newAdventure = { location: location.val(),
-     date: date.val(),
-     typeOfAdventure: typeOfAdventure.val(),
-     lengthOfAdventure: lengthOfAdventure.val() 
-   };
+
    // createAdventure(location)
-    console.log('new adventure serialized', $(this).serializeArray());
+    console.log('new adventure serialized', $(this).serialize());
     $.ajax({
       method: 'POST',
       url: '/api/adventure',
-      data: $(this).serializeArray(),
+      data: $(this).serialize(),
+      dataType: 'json',
       success: newAdventureSuccess,
       error: newAdventureError
     });
@@ -57,13 +54,8 @@ $(document).ready(function(){
 });
 
 function render () {
-  // empty existing posts from view
   $adventuresList.empty();
-
-  // pass `allAdventures` into the template function
   var adventureHtml = adventureTemplate({ adventures: adventures });
-
-  // append html to the view
   $adventuresList.append(adventureHtml);
 }
 
@@ -87,16 +79,20 @@ function onAdventureSuccess(adventures){
     // console.log(json);
 };
 
-function newAdventureSuccess(newAdventure) {
-  var newAdventure = $('#newAdventureForm input').val('');
-
-  console.log(newAdventure);
+function newAdventureSuccess(json) {
+  $('#newAdventureForm input').val('');
+  // console.log(newAdventure);
+  allAdventures.push(json);
   render();
 };
   // function createAdventure(locationOfAdventure){}
   // var adventure = $('form input');
 
-
+   //  var newAdventure = { location: location.val(),
+   //   date: date.val(),
+   //   typeOfAdventure: typeOfAdventure.val(),
+   //   lengthOfAdventure: lengthOfAdventure.val() 
+   // };
 
 // function newAdventureSuccess(json){
 //     // var adventureHtml = adventureTemplate({ profile: json });
