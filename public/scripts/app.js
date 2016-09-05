@@ -48,8 +48,14 @@ $(document).ready(function(){
     });
   });
 
-// your code
-	
+  $adventuresList.on('click', '.deleteBtn', function() {
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/adventure/' +$(this).attr('adventure-id'),
+      success: deleteAdventureSuccess,
+      error: deleteAdventureError
+    });
+  });
 
 });
 
@@ -85,20 +91,8 @@ function newAdventureSuccess(json) {
   allAdventures.push(json);
   render();
 };
-  // function createAdventure(locationOfAdventure){}
-  // var adventure = $('form input');
 
-   //  var newAdventure = { location: location.val(),
-   //   date: date.val(),
-   //   typeOfAdventure: typeOfAdventure.val(),
-   //   lengthOfAdventure: lengthOfAdventure.val() 
-   // };
 
-// function newAdventureSuccess(json){
-//     // var adventureHtml = adventureTemplate({ profile: json });
-//       $('#entireAdventures').append(adventureHtml)
-
-// };
 
 function handleError(e) {
   console.log('Boo for profile!');
