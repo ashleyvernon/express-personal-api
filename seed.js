@@ -56,7 +56,7 @@ db.Adventure.remove({}, function(err, adventures){
 	}
     db.Adventure.create(myAdventures, function(err, adventures){
       if (err) { return console.log('err', err); }
-      console.log("created", adventures.length, "adventures");
+      console.log("created", myAdventures.length, "adventures");
       process.exit();
     });	
 });
