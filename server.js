@@ -116,7 +116,7 @@ app.post('/api/adventure', function(req,res){
     location: req.body.locationAdventure,
     date: req.body.date,
     typeOfAdventure: req.body.typeOfAdventure,
-    lengthOfAdventure: req.body.lengthOfAdventure,
+    lengthOfAdventure: req.body.lengthOfAdventure
     });
   // adventure.push(newAdventure);
   res.json(newAdventure);
@@ -132,11 +132,19 @@ app.post('/api/adventure', function(req,res){
   });
 });
 
-//deletes an adventure
-// app.delete('/api/adventures', function(req,res){
-//   console.log('adventures delete', req.params);
-//   var 
-// });
+// deletes an adventure
+app.delete('/api/adventure', function(req,res){
+  console.log('adventures delete', req.params);
+//   var adventureId = req.params.id;
+
+//   var deleteAdventureIndex = adventure.findIndex(function(e, index) {
+//     return (e._id === parseInt(req.params.id));
+//   });
+//   console.log('deleting adventure with index', deleteAdventureIndex);
+//   var adventureToDelete = adventure[deleteAdventureIndex];
+//   adventure.splice(deleteAdventureIndex, 1);
+//   res.json(adventureToDelete);
+});
 
 
 /**********

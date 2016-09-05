@@ -48,14 +48,14 @@ $(document).ready(function(){
     });
   });
 
-  $adventuresList.on('click', '.deleteBtn', function() {
-    $.ajax({
-      method: 'DELETE',
-      url: '/api/adventure/' +$(this).attr('adventure-id'),
-      success: deleteAdventureSuccess,
-      error: deleteAdventureError
-    });
-  });
+  // $adventuresList.on('click', '.deleteBtn', function() {
+  //   $.ajax({
+  //     method: 'DELETE',
+  //     url: '/api/adventure/' + $(this).attr('adventure-id'),
+  //     success: deleteAdventureSuccess,
+  //     error: deleteAdventureError
+  //   });
+  // });
 
 });
 
@@ -92,6 +92,17 @@ function newAdventureSuccess(json) {
   render();
 };
 
+function deleteAdventureSuccess(json) {
+  var adventure = json;
+  var adventureId = adventure._id;
+  for(var index = 0; index < allAdventures.length; index++) {
+    if(allAdventures[index]._id === adventureId) {
+      allAdventures.splice(index, 1);
+      break;
+    }
+  }
+  render();
+}
 
 
 function handleError(e) {
@@ -109,6 +120,10 @@ function newAdventureError(e) {
   $('#adventureTarget').text('Failed to load new adventures, lame!');
 };
 
+function deleteAdventureError(e) {
+  console.log('You failed to delete');
+  $('#adventureTarget').text('You failed to delete any adventures, try again!');
+};
 
 
 // function updateProfile(color){
