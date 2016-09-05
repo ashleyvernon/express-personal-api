@@ -28,16 +28,33 @@
     </div>
       <div id='profileTarget'>
         <div>
-          <h2>My Adventures</h2>
+          <h2 class="text-center">My Adventures</h2>
+          <div class="row">
             <form class="form-inline" id="newAdventureForm">
-              <input type="text" class="form-control" name="adventure" placeholder="Add new adventure..." required />
-              <button type="submit">Add Adventure</button>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" name="adventure" placeholder="Add new location..." required />
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" name="date" placeholder="Date of adventure...">
+              </div>
+              <div class="form-group">
+                <label for="type">Type Of Adventure</label>
+                <input type="text" class="form-control" name="type" placeholder="Type of adventure...">
+              </div>
+              <div class="form-group">
+                <label for="length">Length of Time</label>
+                <input type="text" class="form-control" name="length" placeholder="Length of adventure...">
+              </div>
+              <button type="submit">Create Adventure</button>
             </form>
+          </div>
         </div>
         <div id="adventureTarget">
           <script id="adventure-template" type="text/x-handlebars-template">
             {{#each adventures}}  
-                  <div class="newAdventure">
+                <div class="newAdventure">
                      {{this.location}}
                      {{this.image}}
                      {{this.date}}

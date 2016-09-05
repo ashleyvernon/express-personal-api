@@ -91,7 +91,7 @@ app.get('/api/profile', function (req, res) {
 
 // get adventures
 app.get('/api/adventure', function (req, res) {
-  // send all books as JSON response
+  // send all adventures as JSON response
   db.Adventure.find(function(err, adventure){
     if (err) { return console.log("index error: " + err); }
     res.json(adventure);  
