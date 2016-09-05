@@ -4,6 +4,7 @@ var template;
 var adventureTemplate;
 var $adventuresList;
 var allAdventures = [];
+console.log(allAdventures);
 
 
 $(document).ready(function(){
@@ -30,20 +31,21 @@ $(document).ready(function(){
 	});
 
 
-	// function createAdventure(locationOfAdventure){}
-	// var adventure = $('form input');
-	// var newAdventure = { location: location.val(),
- //  		date: date.val(),
- //  		typeOfAdventure: typeOfAdventure.val(),
- //  		lengthOfAdventure: lengthOfAdventure.val() };
-
   $('#newAdventureForm').on('submit', function(e) {
     e.preventDefault();
-    console.log($(this).serialize())
+    // alert('this is not working');
+   // var location = $(this).find('input').val();
+    var newAdventure = { location: location.val(),
+     date: date.val(),
+     typeOfAdventure: typeOfAdventure.val(),
+     lengthOfAdventure: lengthOfAdventure.val() 
+   };
+   // createAdventure(location)
+    console.log('new adventure serialized', $(this).serializeArray());
     $.ajax({
       method: 'POST',
       url: '/api/adventure',
-      data: $(this).serialize(),
+      data: $(this).serializeArray(),
       success: newAdventureSuccess,
       error: newAdventureError
     });
@@ -58,12 +60,12 @@ function render () {
   // empty existing posts from view
   $adventuresList.empty();
 
-  // pass `allBooks` into the template function
+  // pass `allAdventures` into the template function
   var adventureHtml = adventureTemplate({ adventures: adventures });
 
   // append html to the view
   $adventuresList.append(adventureHtml);
-};
+}
 
 
 function onProfileSuccess(json){
@@ -85,17 +87,15 @@ function onAdventureSuccess(adventures){
     // console.log(json);
 };
 
-function newAdventureSuccess(json) {
-  $('#newAdventureForm').val('');
-  allAdventures.push(json);
-  console.log(allAdventures);
-  render();
-}
-	// $('form').on('submit', function(){
-	// 	var location = $(this).find('input').val();
+function newAdventureSuccess(newAdventure) {
+  var newAdventure = $('#newAdventureForm input').val('');
 
-	// 	createAdventure(location)
-	// });
+  console.log(newAdventure);
+  render();
+};
+  // function createAdventure(locationOfAdventure){}
+  // var adventure = $('form input');
+
 
 
 // function newAdventureSuccess(json){

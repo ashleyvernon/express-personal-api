@@ -108,15 +108,16 @@ app.post('/api/adventure', function(req,res){
     location: req.body.location,
     date: req.body.date,
     typeOfAdventure: req.body.typeOfAdventure,
-    lengthOfAdventure: req.body.lengthOfAdventure
+    lengthOfAdventure: req.body.lengthOfAdventure,
     });
   adventures.push(newAdventure);
   res.json(newAdventure);
 
   console.log(newAdventure);
   newAdventure.save(function(err, savedAdventure){
-    if(err){
+    if (err) {
       return res.status(500).send('FAILURE');
+      console.log("what am i doing wrong");
     }
 
     res.send(savedAdventure);
@@ -126,9 +127,10 @@ app.post('/api/adventure', function(req,res){
 });
 
 //deletes an adventure
-app.delete('/api/adventures', function(req,res){
-
-})
+// app.delete('/api/adventures', function(req,res){
+//   console.log('adventures delete', req.params);
+//   var 
+// });
 
 
 /**********

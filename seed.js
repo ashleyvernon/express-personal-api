@@ -8,8 +8,8 @@ var ashleyVernon = {
   githubLink: "https://github.com/ashleyvernon",
   githubProfileImage: "https://avatars3.githubusercontent.com/u/18171761?v=3&u=17603bb1d77ea6110b97d2362bcbf3d4e66fb481&s=140",
   personalSiteLink: "https://ashleyvernon.github.io",
-  currentCity: "San Francisco"
-  // pets: [{name: "Sadie", type: "Cat", breed: "Tuxedo", age: "13"}]
+  currentCity: "San Francisco",
+  pets: "1 cat"
 };
 
 var myAdventures = [{
@@ -20,7 +20,7 @@ var myAdventures = [{
 },
 {
   location: "Rockbound Lake, Desolation Wildnerness",
-  imageLink: "http://i.imgur.com/d1wWTXJ.jpg?1",
+  // imageLink: "http://i.imgur.com/d1wWTXJ.jpg?1",
   date: "June 8th, 2016",
   typeOfAdventure: "Backpacking",
   lengthOfAdventure: "2 days, 14.5 miles"
