@@ -8,6 +8,9 @@ console.log(allAdventures);
 
 
 $(document).ready(function(){
+
+  $adventuresList = $('#adventureTarget');
+
 	var source = $('#profile-template').html();
 	template = Handlebars.compile(source);
 
@@ -33,35 +36,42 @@ $(document).ready(function(){
 
   $('#newAdventureForm').on('submit', function(e) {
     e.preventDefault();
-    alert('this is not working');
+    // alert('this is not working');
    // var location = $(this).find('input').val();
 
    // createAdventure(location)
-    console.log('new adventure serialized', $(this).serialize());
+    // console.log('new adventure serialized', $(this).serialize());
+    var location = $(this).find('input[name="locationAdventure"]').val(),
+      type = $(this).find('input[name="typeOfAdventure"]').val();
+
     $.ajax({
       method: 'POST',
       url: '/api/adventure',
-      data: $(this).serialize(),
-      dataType: 'json',
+      data: {
+        locationAdventure: location,
+        typeOfAdventure: type
+      },
       success: newAdventureSuccess,
       error: newAdventureError
     });
   });
 
-  // $adventuresList.on('click', '.deleteBtn', function() {
-  //   $.ajax({
-  //     method: 'DELETE',
-  //     url: '/api/adventure/' + $(this).attr('adventure-id'),
-  //     success: deleteAdventureSuccess,
-  //     error: deleteAdventureError
-  //   });
-  // });
+  $adventuresList.on('click', '.deleteBtn', function() {
+    console.log($(this).attr('adventure-id'));
+
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/adventure/' + $(this).attr('adventure-id'),
+      success: deleteAdventureSuccess,
+      error: deleteAdventureError
+    });
+  });
 
 });
 
-function render () {
+function render() {
   $adventuresList.empty();
-  var adventureHtml = adventureTemplate({ adventures: adventures });
+  var adventureHtml = adventureTemplate({ adventures: allAdventures });
   $adventuresList.append(adventureHtml);
 }
 
@@ -80,6 +90,7 @@ function onProfileSuccess(json){
 };
 
 function onAdventureSuccess(adventures){
+    allAdventures = adventures;
     var adventureHtml = adventureTemplate({ adventures: adventures })
     $('#adventureTarget').append(adventureHtml);
     // console.log(json);
@@ -92,15 +103,18 @@ function newAdventureSuccess(json) {
   render();
 };
 
-function deleteAdventureSuccess(json) {
-  var adventure = json;
-  var adventureId = adventure._id;
+function deleteAdventureSuccess(adventureId) {
+
+  // $('.newAdventure[adventure-id="'+id+'"]').remove();
+
   for(var index = 0; index < allAdventures.length; index++) {
     if(allAdventures[index]._id === adventureId) {
       allAdventures.splice(index, 1);
       break;
     }
   }
+
+  // location.reload();
   render();
 }
 

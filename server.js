@@ -3,7 +3,7 @@ var express = require('express'),
     // exphbs = require('express-handlebars'),
 
     app = express();
-require('./seed.js');
+// require('./seed.js');
 // app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 // app.set('view engine', 'handlebars');
 
@@ -118,34 +118,43 @@ app.post('/api/adventure', function(req,res){
     date: req.body.date,
     typeOfAdventure: req.body.typeOfAdventure,
     lengthOfAdventure: req.body.lengthOfAdventure
-    });
+  });
   // adventure.push(newAdventure);
-  res.json(newAdventure);
-  // console.log(newAdventure);
+  console.log(newAdventure);
+  // // console.log(newAdventure);
   newAdventure.save(function(err, savedAdventure){
     if (err) {
       return console.log(err);
       // return res.status(500).send('FAILURE');
       // console.log("what am i doing wrong");
     }
-    console.log("I saved a new adventure");
+    console.log("--I saved a new adventure--");
     res.json(savedAdventure);
   });
 });
 
 // deletes an adventure
-// app.delete('/api/adventure', function(req,res){
-//   console.log('adventures delete', req.params);
-//   var adventureId = req.params.id;
+app.delete('/api/adventure/:id', function(req,res){
+  console.log('adventures delete', req.params);
+  var adventureId = req.params.id;
 
-//   var deleteAdventureIndex = adventure.findIndex(function(e, index) {
-//     return (e._id === parseInt(req.params.id));
-//   });
-//   console.log('deleting adventure with index', deleteAdventureIndex);
-//   var adventureToDelete = adventure[deleteAdventureIndex];
-//   adventure.splice(deleteAdventureIndex, 1);
-//   res.json(adventureToDelete);
-// });
+  db.Adventure.remove({
+    _id: adventureId
+  }, function(err, adventures){
+    if(err) {
+      console.log('Error occurred in remove', err);
+      return res.send('error');
+    }
+    res.send(adventureId);
+  });
+  // var deleteAdventureIndex = adventure.findIndex(function(e, index) {
+  //   return (e._id === parseInt(req.params.id));
+  // });
+  // console.log('deleting adventure with index', deleteAdventureIndex);
+  // var adventureToDelete = adventure[deleteAdventureIndex];
+  // adventure.splice(deleteAdventureIndex, 1);
+  // res.json(adventureToDelete);
+});
 
 
 /**********

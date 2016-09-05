@@ -61,7 +61,7 @@ db.Adventure.remove({}, function(err, adventures){
     });	
 });
 
-db.Profile.remove({}, function(err, profile){
+db.Profile.remove({}, function(err, profile){ 
   if(err) {
     console.log('Error occurred in remove', err);
   } else {
