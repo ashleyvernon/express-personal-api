@@ -36,6 +36,7 @@ $(document).ready(function(){
 
   $('#newAdventureForm').on('submit', function(e) {
     e.preventDefault();
+
     // alert('this is not working');
    // var location = $(this).find('input').val();
 
@@ -66,6 +67,42 @@ $(document).ready(function(){
       error: deleteAdventureError
     });
   });
+
+$adventuresList.on('click', '.editBtn', function() {
+  event.preventDefault();
+  $('#newAdventureForm' + $(this).attr('adventure-id')).show();
+});
+
+
+//*************** 
+  // $adventuresList.on('click', '.editBtn', function() {
+  //   // console.log($(this).attr('adventure-id'));
+  //   console.log('--editbutton clicked--');
+  //   var adventure;
+  //   var adventureId = $(this).attr('adventure-id');
+  //   console.log(adventureId);
+  //   for(var index = 0; index < allAdventures.length; index++) {
+  //     if(allAdventures[index]._id === adventureId) {
+  //       adventure = allAdventures[index];
+  //       break;
+  //     }
+  //   }
+  //   if(!adventure){
+  //     return alert('no adventure');
+  //   }
+
+  //   console.log(adventure);
+
+  //   $('form').find('input.locationAdventure').val( adventure.location );
+
+    // $.ajax({
+    //   method: 'PUT',
+    //   url: '/api/adventure/' + $(this).attr('adventure-id'),
+    //   success: editAdventureSuccess,
+    //   error: editAdventureError
+    // });
+  // });
+
 
 });
 
@@ -104,20 +141,22 @@ function newAdventureSuccess(json) {
 };
 
 function deleteAdventureSuccess(adventureId) {
-
   // $('.newAdventure[adventure-id="'+id+'"]').remove();
-
   for(var index = 0; index < allAdventures.length; index++) {
     if(allAdventures[index]._id === adventureId) {
       allAdventures.splice(index, 1);
       break;
     }
   }
-
-  // location.reload();
   render();
 }
 
+function editAdventureSuccess(adventureId) {
+  $('#newAdventureForm input').val('');
+  // console.log(newAdventure);
+  allAdventures.push(json);
+  render();
+}
 
 function handleError(e) {
   console.log('Boo for profile!');
@@ -139,6 +178,10 @@ function deleteAdventureError(e) {
   $('#adventureTarget').text('You failed to delete any adventures, try again!');
 };
 
+function editAdventureError(e) {
+  console.log('You failed to edit');
+  $('#adventureTarget').text('You failed to edit any adventures, try again!');
+};
 
 // function updateProfile(color){
 
