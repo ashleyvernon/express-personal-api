@@ -77,10 +77,10 @@ app.get('/api/profile', function (req, res) {
   });
 });
 
-// update profile
-app.put('/api/adventure', function (req, res) {
+// update adventure
+app.put('/api/adventure/:_id', function (req, res) {
 //   // send all books as JSON response
-  db.Adventure.find(function(err, profile){
+  db.Adventure.findOne(function(err, adventure){
     if (err) { return console.log("index error: " + err); }
     console.log('Adventure',adventure);
     adventure.save(function(err, didAdventureUpdate){

@@ -68,40 +68,52 @@ $(document).ready(function(){
     });
   });
 
-$adventuresList.on('click', '.editBtn', function() {
-  event.preventDefault();
-  $('#newAdventureForm' + $(this).attr('adventure-id')).show();
-});
+// ('#edit-form').on('click', '.editBtn', function() {
+//   // event.preventDefault();
+//   $('#newAdventureForm' + $(this).attr('adventure-id')).show();
+// });
 
+// $adventuresList.on('submit', '.form-edit-adventure', function(event) {
+//   event.preventDefault();
+//   $.ajax({
+//     method: 'PUT',
+//     url: '/api/adventure/' + $(this).attr('adventure-id'),
+//     success: editAdventureSuccess,
+//     error: editAdventureError    
+//   });
+// });
 
 //*************** 
-  // $adventuresList.on('click', '.editBtn', function() {
-  //   // console.log($(this).attr('adventure-id'));
-  //   console.log('--editbutton clicked--');
-  //   var adventure;
-  //   var adventureId = $(this).attr('adventure-id');
-  //   console.log(adventureId);
-  //   for(var index = 0; index < allAdventures.length; index++) {
-  //     if(allAdventures[index]._id === adventureId) {
-  //       adventure = allAdventures[index];
-  //       break;
-  //     }
-  //   }
-  //   if(!adventure){
-  //     return alert('no adventure');
-  //   }
+  $adventuresList.on('click', '.editBtn', function() {
+    // console.log($(this).attr('adventure-id'));
+    console.log('--editbutton clicked--');
+    var adventure;
+    var adventureId = $(this).attr('adventure-id');
+    console.log(adventureId);
+    for(var index = 0; index < allAdventures.length; index++) {
+      if(allAdventures[index]._id === adventureId) {
+        adventure = allAdventures[index];
+        break;
+      }
+    }
+    if(!adventure){
+      return alert('no adventure');
+    }
 
-  //   console.log(adventure);
+    console.log(adventure);
 
-  //   $('form').find('input.locationAdventure').val( adventure.location );
+    $('form').find('input.locationAdventure').val( adventure.location );
+    $('form').find('input.date').val( adventure.date );
+    $('form').find('input.typeOfAdventure').val( adventure.type );
+    $('form').find('input.lengthOfAdventure').val( adventure.length );
 
-    // $.ajax({
-    //   method: 'PUT',
-    //   url: '/api/adventure/' + $(this).attr('adventure-id'),
-    //   success: editAdventureSuccess,
-    //   error: editAdventureError
-    // });
-  // });
+    $.ajax({
+      method: 'PUT',
+      url: '/api/adventure/' + $(this).attr('adventure-id'),
+      success: editAdventureSuccess,
+      error: editAdventureError
+    });
+  });
 
 
 });
@@ -154,9 +166,21 @@ function deleteAdventureSuccess(adventureId) {
 function editAdventureSuccess(adventureId) {
   $('#newAdventureForm input').val('');
   // console.log(newAdventure);
-  allAdventures.push(json);
+  allAdventures.push(adventureId);
   render();
 }
+// function editAdventureSuccess(json){
+//   $('.form-edit-adventure').hide();
+//   var adventure = json;
+//   var adventureId = adventure._id;
+//   for (var index = 0; index < allAdventures.length; index++) {
+//     if(allAdventures[index]._id === adventureId) {
+//       allAdventures[index] = adventure;
+//       break
+//     }
+//   }
+//   render();
+// }
 
 function handleError(e) {
   console.log('Boo for profile!');

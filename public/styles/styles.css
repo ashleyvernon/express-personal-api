@@ -1,18 +1,57 @@
 body {
   color: #333;
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: #e3e0e3; /* Sanity Check! */
+  font-family: "Lucida Bright", Georgia, serif;
+  background-color: #dbefed; /* Sanity Check! */
 }
 
 h1 {
-  margin-top: 100px;
-  text-align: center;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-family: "Lucida Bright", Georgia, serif;
+	font-size: 48px;
 }
 
-/*#newDestinationForm {
-	
+h2 {
+	text-align: center;
 }
-*/
-.editBtn {
-/*	display: none;*/
+
+img {
+/*	padding-bottom: 1em;*/
+	display: block;
 }
+
+#newAdventureForm {
+	display: block;
+}
+
+.form-group {
+	display: block;
+}
+
+.link {
+	display: block;
+}
+
+.locate {
+	font-size: 19px;
+}
+
+
+a:link, a:visited {
+    color: navy;
+    text-align: center; 
+    text-decoration: none;
+    display: block;
+}
+
+a:hover {
+	color: white;
+}
+
+.btn {
+	background-color: navy;
+}
+/*.form-control2 {
+	display: none;
+}*/
