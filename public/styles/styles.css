@@ -17,7 +17,6 @@ h2 {
 }
 
 img {
-/*	padding-bottom: 1em;*/
 	display: block;
 }
 
@@ -36,13 +35,16 @@ img {
 .locate {
 	font-size: 19px;
 }
-
+.link {
+	color: navy;
+}
 
 a:link, a:visited {
     color: navy;
     text-align: center; 
     text-decoration: none;
     display: block;
+    color: white;
 }
 
 a:hover {
@@ -50,8 +52,5 @@ a:hover {
 }
 
 .btn {
-	background-color: navy;
+	background-color: #2b6984;
 }
-/*.form-control2 {
-	display: none;
-}*/

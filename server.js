@@ -4,12 +4,7 @@ var express = require('express'),
 
     app = express();
 // require('./seed.js');
-// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-// app.set('view engine', 'handlebars');
 
-// app.get('/', function (req, res) {
-//   res.render('index');
-// });
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -98,16 +93,6 @@ app.get('/api/adventure', function (req, res) {
   });
 });
 
-
-//***************
-// app.post('/api/careers', function (req, res) {
-//   var newCareer = new db.Career(req.body);
-//   newCareer.save(function (err, savedCareer) {
-//     if (err) {return console.log(err);}
-//     res.json(savedCareer);
-//   });
-// });
-//**************
 
 
 // create a new adventures

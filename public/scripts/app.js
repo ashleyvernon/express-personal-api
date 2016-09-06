@@ -37,11 +37,6 @@ $(document).ready(function(){
   $('#newAdventureForm').on('submit', function(e) {
     e.preventDefault();
 
-    // alert('this is not working');
-   // var location = $(this).find('input').val();
-
-   // createAdventure(location)
-    // console.log('new adventure serialized', $(this).serialize());
     var location = $(this).find('input[name="locationAdventure"]').val(),
       type = $(this).find('input[name="typeOfAdventure"]').val();
 
@@ -83,7 +78,7 @@ $(document).ready(function(){
 //   });
 // });
 
-//*************** 
+
   $adventuresList.on('click', '.editBtn', function() {
     // console.log($(this).attr('adventure-id'));
     console.log('--editbutton clicked--');
@@ -206,17 +201,4 @@ function editAdventureError(e) {
   console.log('You failed to edit');
   $('#adventureTarget').text('You failed to edit any adventures, try again!');
 };
-
-// function updateProfile(color){
-
-// 	$.ajax({
-// 		method: 'put',
-// 		url: '/api/profile',
-// 		data: {
-// 			color: color
-// 		},
-// 		success: onSuccess,
-// 		error: handleError
-// 	});
-// }
 
